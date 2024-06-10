@@ -60,3 +60,21 @@ const gameEvents = new Map([
 // 1) Create an array of of the different events that happened with no duplicates.
 
 const gameEventsArr = [...new Set([...gameEvents.values()])];
+
+// 2) After the game has finished, it was found that the yellow card from munute 64 was unfair. Remove this event from the game events log.
+
+gameEvents.delete(64);
+
+// 3) Compute and log the following string to the console: "An event happened, on average, every 9 minutes." (Keep in mind that a game has 90 minutes)
+
+console.log(
+  `An event happened, on average, every ${90 / (gameEvents.size - 1)} minutes.`
+);
+
+// 4) Loop over 'gameEvents' and log each element to the console, marking whether it's in the first half or second half (after 45 min) of the game, like this: [FIRST HALF] 17: ⚽️ GOAL
+
+for (const [time, event] of gameEvents) {
+  time <= 45
+    ? console.log(`[FIRST HALF] ${time}: ${event}`)
+    : console.log(`[SECOND HALF] ${time}: ${event}`);
+}
